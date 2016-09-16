@@ -35,21 +35,12 @@ public class LibraryController {
             return Response.ok(libraryService.getAll()).build();
         }
 
-        int is = 0;
-
         if (libraryService.getById(book.getId()) != null) {
-            is++;
-        }
-
-        if (is > 0) {
             libraryService.update(book);
             return Response.ok().build();
-        } else if (is == 0) {
+        } else {
             libraryService.save(book);
             return Response.created(uriInfo.getAbsolutePath()).build();
         }
-
-        return Response.status(500).build();
     }
-
 }

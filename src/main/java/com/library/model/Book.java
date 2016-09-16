@@ -1,7 +1,6 @@
 package com.library.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Date;
 
 /**
  * Created by dmitry on 16.09.16.
@@ -13,10 +12,9 @@ public class Book {
     private String author;
     private String title;
     private String genre;
-    private Long price;
-    private Date publish_date;
+    private String price;
+    private String publish_date;
     private String description;
-
 
     public String getId() {
         return id;
@@ -50,19 +48,19 @@ public class Book {
         this.genre = genre;
     }
 
-    public Long getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public Date getPublish_date() {
+    public String getPublish_date() {
         return publish_date;
     }
 
-    public void setPublish_date(Date publish_date) {
+    public void setPublish_date(String publish_date) {
         this.publish_date = publish_date;
     }
 

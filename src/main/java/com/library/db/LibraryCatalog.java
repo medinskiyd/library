@@ -1,32 +1,23 @@
 package com.library.db;
 
 import com.library.model.Book;
-import org.springframework.stereotype.Component;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
- * Created by dmitry on 16.09.16.
+ * Created by dmitry on 17.09.16.
  */
-@Component
+@XmlRootElement
 public class LibraryCatalog {
 
-    public void save(Book book) {
+    private List<Book> catalog;
 
+    public List<Book> getCatalog() {
+        return catalog;
     }
 
-    public void update(Book book) {
-
+    public void setCatalog(List<Book> catalog) {
+        this.catalog = catalog;
     }
-
-    public Book getById(String id) {
-
-        return null;
-    }
-
-    public List<Book> getAll() {
-
-        return null;
-    }
-
 }

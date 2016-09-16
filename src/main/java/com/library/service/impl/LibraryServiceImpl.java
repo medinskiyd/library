@@ -1,6 +1,6 @@
 package com.library.service.impl;
 
-import com.library.db.LibraryCatalog;
+import com.library.db.LibraryCatalogService;
 import com.library.model.Book;
 import com.library.utils.WebException;
 import org.slf4j.Logger;
@@ -19,7 +19,7 @@ import java.util.List;
 public class LibraryServiceImpl {
 
     @Autowired
-    private LibraryCatalog libraryCatalog;
+    private LibraryCatalogService libraryCatalogService;
 
     private final static Logger logger = LoggerFactory.getLogger(LibraryServiceImpl.class);
 
@@ -36,7 +36,7 @@ public class LibraryServiceImpl {
             throw new WebException(400, msg);
         }
 
-        libraryCatalog.save(book);
+        libraryCatalogService.save(book);
 
         logger.info("Book with id = " + book.getId() + " saved.");
     }
@@ -54,7 +54,7 @@ public class LibraryServiceImpl {
             throw new WebException(400, msg);
         }
 
-        libraryCatalog.update(book);
+        libraryCatalogService.update(book);
 
         logger.info("Book with id = " + book.getId() + " updated.");
 
@@ -74,7 +74,7 @@ public class LibraryServiceImpl {
             throw new WebException(400, msg);
         }
 
-        libraryCatalog.getById(id);
+        libraryCatalogService.getById(id);
 
         logger.info("Get book with id = " + id);
 
@@ -87,7 +87,7 @@ public class LibraryServiceImpl {
      * @return {@link List <Book>} books from catalog.
      */
     public List<Book> getAll() {
-        return libraryCatalog.getAll();
+        return libraryCatalogService.getAll();
     }
 
 }
