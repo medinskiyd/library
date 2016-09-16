@@ -1,19 +1,25 @@
 package com.library.service.impl;
 
+import com.library.db.LibraryCatalog;
 import com.library.model.Book;
+import com.library.utils.WebException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Library service implementation.
- * <p>
+ *
  * Created by dmitry on 16.09.16.
  */
 @Service
 public class LibraryServiceImpl {
+
+    @Autowired
+    private LibraryCatalog libraryCatalog;
 
     private Logger logger = LoggerFactory.getLogger(LibraryServiceImpl.class);
 
@@ -22,13 +28,17 @@ public class LibraryServiceImpl {
      *
      * @param book {@link Book} new book.
      */
-    void save(Book book) {
+    public void save(Book book) {
 
         if (book == null) {
-
+            String msg = "Book is empty!";
+            logger.info(msg);
+            throw new WebException(400, msg);
         }
 
-        logger.info("Book with " + book.getId() + " saved.");
+        libraryCatalog.save(book);
+
+        logger.info("Book with id = " + book.getId() + " saved.");
     }
 
     /**
@@ -36,7 +46,17 @@ public class LibraryServiceImpl {
      *
      * @param book {@link Book} book.
      */
-    void update(Book book) {
+    public void update(Book book) {
+
+        if (book == null) {
+            String msg = "Book is empty!";
+            logger.info(msg);
+            throw new WebException(400, msg);
+        }
+
+        libraryCatalog.update(book);
+
+        logger.info("Book with id = " + book.getId() + " updated.");
 
     }
 
@@ -46,7 +66,18 @@ public class LibraryServiceImpl {
      * @param id book id (String).
      * @return {@link Book} book from catalog.
      */
-    Book getById(String id) {
+    public Book getById(String id) {
+
+        if (id == null) {
+            String msg = "Book id is empty!";
+            logger.info(msg);
+            throw new WebException(400, msg);
+        }
+
+        libraryCatalog.getById(id);
+
+        logger.info("Get book with id = " + id);
+
         return null;
     }
 
@@ -55,8 +86,8 @@ public class LibraryServiceImpl {
      *
      * @return {@link List <Book>} books from catalog.
      */
-    List<Book> getAll() {
-        return null;
+    public List<Book> getAll() {
+        return libraryCatalog.getAll();
     }
 
 }
