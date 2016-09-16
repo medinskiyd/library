@@ -21,7 +21,7 @@ public class LibraryServiceImpl {
     @Autowired
     private LibraryCatalog libraryCatalog;
 
-    private Logger logger = LoggerFactory.getLogger(LibraryServiceImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(LibraryServiceImpl.class);
 
     /**
      * Save new book.
