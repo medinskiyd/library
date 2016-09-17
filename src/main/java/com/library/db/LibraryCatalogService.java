@@ -113,7 +113,7 @@ public class LibraryCatalogService {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("/catalog.xml"));
+            StreamResult result = new StreamResult(new File("catalog.xml"));
 
             transformer.transform(source, result);
 
