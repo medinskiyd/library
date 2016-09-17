@@ -2,6 +2,7 @@ package com.library.service.impl;
 
 import com.library.db.LibraryCatalogService;
 import com.library.model.Book;
+import com.library.service.LibraryService;
 import com.library.utils.WebException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +17,7 @@ import java.util.List;
  * Created by dmitry on 16.09.16.
  */
 @Service
-public class LibraryServiceImpl {
+public class LibraryServiceImpl implements LibraryService {
 
     @Autowired
     private LibraryCatalogService libraryCatalogService;
@@ -74,11 +75,11 @@ public class LibraryServiceImpl {
             throw new WebException(400, msg);
         }
 
-        libraryCatalogService.getById(id);
+        Book book = libraryCatalogService.getById(id);
 
         logger.info("Get book with id = " + id);
 
-        return null;
+        return book;
     }
 
     /**

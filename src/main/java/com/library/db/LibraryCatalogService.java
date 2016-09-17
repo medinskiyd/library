@@ -29,13 +29,13 @@ public class LibraryCatalogService {
     private final static Logger logger = LoggerFactory.getLogger(LibraryCatalogService.class);
 
     public void save(Book book) {
-        LibraryCatalog catalog = getCatalog();
+        LibraryCatalog catalog = loadCatalog();
         catalog.getCatalog().add(book);
         saveCatalog(catalog);
     }
 
     public void update(Book book) {
-        LibraryCatalog catalog = getCatalog();
+        LibraryCatalog catalog = loadCatalog();
 
         catalog.getCatalog().stream().filter(book1 -> book1.getId().equals(book.getId())).forEach(book1 -> {
             catalog.getCatalog().remove(book1);
@@ -46,7 +46,7 @@ public class LibraryCatalogService {
 
     public Book getById(String id) {
 
-        LibraryCatalog catalog = getCatalog();
+        LibraryCatalog catalog = loadCatalog();
         Book book = null;
 
         for (Book book1 : catalog.getCatalog()) {
@@ -58,7 +58,7 @@ public class LibraryCatalogService {
     }
 
     public List<Book> getAll() {
-        return getCatalog().getCatalog();
+        return loadCatalog().getCatalog();
     }
 
 
@@ -133,13 +133,14 @@ public class LibraryCatalogService {
      *
      * @return {@link LibraryCatalog} catalog.
      */
-    public LibraryCatalog getCatalog() {
+    public LibraryCatalog loadCatalog() {
 
         LibraryCatalog catalog = new LibraryCatalog();
 
         try {
+            ClassLoader classLoader = getClass().getClassLoader();
+            File fXmlFile = new File(classLoader.getResource("catalog.xml").getFile());
 
-            File fXmlFile = new File("/catalog.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);

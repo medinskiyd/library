@@ -2,16 +2,15 @@ package com.library.db;
 
 import com.library.model.Book;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by dmitry on 17.09.16.
  */
-@XmlRootElement
 public class LibraryCatalog {
 
-    private List<Book> catalog;
+    private List<Book> catalog = new ArrayList<>();
 
     public List<Book> getCatalog() {
         return catalog;

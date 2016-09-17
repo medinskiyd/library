@@ -1,11 +1,12 @@
 package com.library.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by dmitry on 16.09.16.
  */
-@XmlRootElement
+@XmlRootElement(name = "book")
 public class Book {
 
     private String id;
@@ -16,6 +17,7 @@ public class Book {
     private String publish_date;
     private String description;
 
+    @XmlAttribute
     public String getId() {
         return id;
     }
